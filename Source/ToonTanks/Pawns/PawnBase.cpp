@@ -23,13 +23,19 @@ APawnBase::APawnBase()
 
 }
 
-void APawnBase::RotateTurretFunction(FVector TargetLocation)
+void APawnBase::RotateTurret(FVector TargetLocation)
 {
+	FVector LookAtTargetClean = FVector(TargetLocation.X, TargetLocation.Y, TurretMesh->GetComponentLocation().Z);
+	FVector StartLocation = TurretMesh->GetComponentLocation();
+
+	FRotator TurretRotation = FVector(FVector(LookAtTargetClean - StartLocation)).Rotation();
+	TurretMesh->SetWorldRotation(TurretRotation);
 
 }
 
 void APawnBase::Fire()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Fire condition checked."));
 }
 
 void APawnBase::HandleDestruction()

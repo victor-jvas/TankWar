@@ -30,7 +30,7 @@ public:
 
 protected:
 
-	void RotateTurretFunction(FVector TargetLocation);
+	void RotateTurret(FVector TargetLocation);
 
 	void Fire();
 
