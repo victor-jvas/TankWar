@@ -25,7 +25,6 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Damage", meta = (AllowPrivateAccess = "true"))
 	float Damage = 50;
 
-	
 
 public:	
 	// Sets default values for this actor's properties
