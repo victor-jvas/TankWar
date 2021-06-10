@@ -3,6 +3,9 @@
 
 #include "ProjectileBase.h"
 
+#include "Kismet/GameplayStatics.h"
+
+
 // Sets default values
 AProjectileBase::AProjectileBase()
 {
@@ -10,6 +13,7 @@ AProjectileBase::AProjectileBase()
 	PrimaryActorTick.bCanEverTick = false;
 
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
+	MeshComponent->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
 	RootComponent = MeshComponent;
 
 	MovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
@@ -34,5 +38,19 @@ void AProjectileBase::BeginPlay()
 	
 }
 
+void AProjectileBase::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+	FVector NormalImpulse, const FHitResult& Hit)
+{
+	AActor* MyOwner = GetOwner();
+
+	if (!MyOwner) return;
+
+	if (OtherActor && OtherActor != this && OtherActor != MyOwner)
+	{
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, DamageType);
+	}
+
+	Destroy();
+}
 
 
