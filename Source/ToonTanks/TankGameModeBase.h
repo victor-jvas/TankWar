@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Pawns/PawnTank.h"
+
 #include "TankGameModeBase.generated.h"
 
 /**
@@ -15,9 +17,13 @@ class TOONTANKS_API ATankGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 private:
-
+	
 	void HandleGameStart();
 	void HandleGameOver(bool PlayerWon);
+	int32 GetTargetTurretCount() const;
+
+	int32 TargetTurrets;
+	APawnTank* PlayerTank;
 
 public:
 
@@ -33,3 +39,4 @@ protected:
 	void GameOver(bool PlayerWon);
 	
 };
+
