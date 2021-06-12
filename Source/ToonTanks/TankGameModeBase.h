@@ -8,6 +8,7 @@
 
 #include "TankGameModeBase.generated.h"
 
+class APlayerControllerBase;
 /**
  * 
  */
@@ -24,6 +25,7 @@ private:
 
 	int32 TargetTurrets;
 	APawnTank* PlayerTank;
+	APlayerControllerBase* PlayerController;
 
 public:
 

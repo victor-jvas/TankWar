@@ -30,6 +30,7 @@ private:
 	float RotateSpeed = 100.f;
 
 	APlayerController* PlayerController;
+    bool bPlayerAlive = true;
 
 	void CalculateMoveInput(float Value);
 	void CalculateRotateInput(float Value);
@@ -48,6 +49,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void HandleDestruction() override;
+	
+	bool IsPlayerAlive();
 
 protected:
 	// Called when the game starts or when spawned

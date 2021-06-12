@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
 #include "ToonTanks/TankGameModeBase.h"
 
 #include "HealthComponent.generated.h"
@@ -21,6 +20,7 @@ private:
 	float Health = 0.0f;
 
 	ATankGameModeBase* GameMode;
+
 public:	
 	// Sets default values for this component's properties
 	UHealthComponent();

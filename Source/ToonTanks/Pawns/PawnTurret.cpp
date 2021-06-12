@@ -4,6 +4,7 @@
 #include "PawnTurret.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "PawnTank.h"
 
 void APawnTurret::BeginPlay()
 {
@@ -36,7 +37,7 @@ void APawnTurret::Tick(float DeltaTime)
 void APawnTurret::CheckFireCondition()
 {
 	// If Player == null || is Dead the bail
-	if (!PlayerPawn)
+	if (!PlayerPawn || !PlayerPawn->IsPlayerAlive())
 	{
 			return;
 	}

@@ -5,6 +5,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "Pawns/PawnTurret.h"
+#include "PlayerControllers/PlayerControllerBase.h"
 
 void ATankGameModeBase::BeginPlay()
 {
@@ -20,7 +21,19 @@ void ATankGameModeBase::HandleGameStart()
 	
 	PlayerTank = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
+	PlayerController = Cast<APlayerControllerBase>(UGameplayStatics::GetPlayerController(this, 0));
+
 	GameStart();
+
+	if (PlayerController)
+	{
+		PlayerController->SetPlayerEnabledState(false);
+
+		FTimerHandle EnableHandle;
+		FTimerDelegate EnableDelegate = FTimerDelegate::CreateUObject(PlayerController, &APlayerControllerBase::SetPlayerEnabledState, true);
+
+		GetWorld()->GetTimerManager().SetTimer(EnableHandle, EnableDelegate, StartDelay, false);
+	}
 	
 }
 
@@ -35,6 +48,11 @@ void ATankGameModeBase::ActorDied(AActor* DeadActor)
 	{
 		PlayerTank->HandleDestruction();
 		HandleGameOver(false);
+
+		if (PlayerController)
+		{
+			PlayerController->SetPlayerEnabledState(false);
+		}
 
 		return;
 	}
