@@ -31,12 +31,13 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UHealthComponent* HealthComponent;
 
+	// VARIABLES
 	UPROPERTY(EditAnywhere, Category = "Particles")
 	UParticleSystem* DeathParticle;
-
-	// VARIABLES
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AProjectileBase> ProjectileClass;
+	UPROPERTY(EditAnywhere, Category = "Sounds")
+	USoundBase* DestructionSound;
 
 public:
 	// Sets default values for this pawn's properties
