@@ -6,6 +6,7 @@
 
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/Pawn.h"
+#include "Camera/CameraShakeBase.h"
 
 
 #include "PawnBase.generated.h"
@@ -38,6 +39,8 @@ private:
 	TSubclassOf<AProjectileBase> ProjectileClass;
 	UPROPERTY(EditAnywhere, Category = "Sounds")
 	USoundBase* DestructionSound;
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	TSubclassOf<UCameraShakeBase> DestructionShake;
 
 public:
 	// Sets default values for this pawn's properties
